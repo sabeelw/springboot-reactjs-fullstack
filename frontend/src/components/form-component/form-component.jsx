@@ -14,7 +14,7 @@ export const Form = (props) => {
         <form>
             <Box>
                 <FormControl>
-                    <InputLabel htmlFor="component-outlined">Name</InputLabel>
+                    <InputLabel htmlFor="component-outlined">Name:</InputLabel>
                     <OutlinedInput
                         id="component-outlined"
                         label="Name"
@@ -23,7 +23,7 @@ export const Form = (props) => {
                     />
                 </FormControl>
                 <FormControl>
-                    <InputLabel htmlFor="component-outlined">Email</InputLabel>
+                    <InputLabel htmlFor="component-outlined">Email:</InputLabel>
                     <OutlinedInput
                         id="component-outlined"
                         label="Email"
@@ -32,7 +32,7 @@ export const Form = (props) => {
                     />
                 </FormControl>
                 <FormControl>
-                    <InputLabel htmlFor="component-outlined">Age</InputLabel>
+                    <InputLabel htmlFor="component-outlined">Age:</InputLabel>
                     <OutlinedInput
                         id="component-outlined"
                         label="Age"
