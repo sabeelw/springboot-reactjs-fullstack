@@ -170,9 +170,9 @@
 				<executions>
 					<execution>
 						<phase>package</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
+<!--						<goals>-->
+<!--							<goal>build</goal>-->
+<!--						</goals>-->
 					</execution>
 				</executions>
 				<configuration>
