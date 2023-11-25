@@ -2,11 +2,13 @@ package com.koshur.springboot.customer;
 
 import com.koshur.springboot.Main;
 import com.koshur.springboot.exception.ResourceNotFound;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 public class CustomerController {
@@ -37,8 +39,8 @@ public class CustomerController {
         this.customerService.createUser(customer);
         return customer;
     }
-    @DeleteMapping("/deleteUser")
-    public Optional<Customer> deleteCustomer(@RequestBody Email email){
+    @DeleteMapping("/deleteUser/{email}")
+    public Optional<Customer> deleteCustomer(@PathVariable Email email){
         System.out.println(email);
         return this.customerService.deleteUser(email.email());
     }

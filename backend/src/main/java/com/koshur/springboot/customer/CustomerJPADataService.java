@@ -44,7 +44,7 @@ public class CustomerJPADataService implements CustomerDAO {
     public Optional<Customer> deleteUser(String email) {
         Customer temp = this.customerRepo.getCustomerByEmail(email);
         this.customerRepo.delete(temp);
-        return Optional.of(temp);
+        return Optional.ofNullable(temp);
     }
 
     @Override

@@ -8,9 +8,13 @@
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<organization>
+		<name>sabeelwani</name>
+		<url>https://amigoscode.com</url>
+	</organization>
 	<groupId>com.koshur.springboot</groupId>
-	<artifactId>sping-boot-full-stack</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>spring-boot-full-stack</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<name>sping-boot-full-stack</name>
 	<description>sping-boot-full-stack</description>
 	<properties>
@@ -26,6 +30,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -82,52 +91,109 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.12.1</version>
 
 				<executions>
-
 					<execution>
+						<id>
+							pre-integration-test
+						</id>
 						<goals>
-							<goal>install-node-and-npm</goal>
+							<goal>start</goal>
 						</goals>
-						<phase>generate-resources</phase>
-					</execution>
-
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<phase>generate-resources</phase>
 						<configuration>
-							<arguments>install</arguments>
+							<arguments>
+								<argument>--server.port=${tomcat.http.port}</argument>
+							</arguments>
 						</configuration>
 					</execution>
-
 					<execution>
-						<id>npm run-script build</id>
+						<id>
+							post-integration-test
+						</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>stop</goal>
 						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<!-- arguments>run-script build</arguments-->
-						</configuration>
 					</execution>
-
 				</executions>
-
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<systemPropertyVariables>
+								<test.server.port>${tomcat.http.port}</test.server.port>
+							</systemPropertyVariables>
+							<classesDirectory>
+								${project.build.outputDirectory}
+							</classesDirectory>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+								<include>**/*IT.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>reserve-tomcat-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<portNames>
+								<portName>tomcat.http.port</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<nodeVersion>v16.14.2</nodeVersion>
+					<from>
+						<image>eclipse-temurin:17.0.9_9-jdk-ubi9-minimal</image>
+						<platforms>
+							<platform>
+								<architecture>arm64</architecture>
+								<os>linux</os>
+							</platform>
+						</platforms>
+					</from>
+					<to>
+						<image>
+							docker.io/sabeelwani/${project.artifactId}:${project.version}
+						</image>
+						<tags>
+							<tag>latest</tag>
+						</tags>
+					</to>
 				</configuration>
-
 			</plugin>
 		</plugins>
 

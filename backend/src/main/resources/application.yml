@@ -3,7 +3,7 @@ server:
     include-message: always
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:54321/customers
+    url: jdbc:postgresql://localhost:5432/customers
     username: amigoscode
     password: mysecretpassword
   jpa:
