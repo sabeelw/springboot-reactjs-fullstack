@@ -19,6 +19,9 @@
 	<description>sping-boot-full-stack</description>
 	<properties>
 		<java.version>17</java.version>
+		<docker.username>sabeelwani</docker.username>
+		<docker.image.name>spring-boot-full-stack</docker.image.name>
+		<docker.image.tag/>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -187,7 +190,7 @@
 					</from>
 					<to>
 						<image>
-							docker.io/sabeelwani/${project.artifactId}:${project.version}
+							docker.io/sabeelwani/${docker.image.name}:${docker.image.tag}
 						</image>
 						<tags>
 							<tag>latest</tag>
