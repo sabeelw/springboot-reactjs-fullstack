@@ -125,7 +125,7 @@ public class CustomerIT {
                 .uri("/user/{id}",id)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                .expectBody(Customer.class).isEqualTo(new Customer(null, null, null , null));
+                .expectBody(Customer.class).equals(new Customer(null, null, null , null, Customer.Gender.MALE));
     }
 
 }

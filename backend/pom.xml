@@ -20,8 +20,8 @@
 	<properties>
 		<java.version>17</java.version>
 		<docker.username>sabeelwani</docker.username>
-		<docker.image.name>spring-boot-full-stack</docker.image.name>
-		<docker.image.tag/>
+		<docker.image.name>spring-boot</docker.image.name>
+		<docker.image.tag>latest</docker.image.tag>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -173,17 +173,18 @@
 				<executions>
 					<execution>
 						<phase>package</phase>
-<!--						<goals>-->
-<!--							<goal>build</goal>-->
-<!--						</goals>-->
+						<goals>
+							<goal>build</goal>
+						</goals>
 					</execution>
 				</executions>
 				<configuration>
 					<from>
 						<image>eclipse-temurin:17.0.9_9-jdk-ubi9-minimal</image>
+
 						<platforms>
 							<platform>
-								<architecture>arm64</architecture>
+								<architecture>amd64</architecture>
 								<os>linux</os>
 							</platform>
 						</platforms>
@@ -192,6 +193,7 @@
 						<image>
 							docker.io/sabeelwani/${docker.image.name}:${docker.image.tag}
 						</image>
+
 						<tags>
 							<tag>latest</tag>
 						</tags>

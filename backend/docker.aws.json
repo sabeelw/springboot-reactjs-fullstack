@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "wanicodes",
-      "image": "sabeelwani/spring-boot-full-stack:latest",
+      "image": "sabeelwani/spring-boot:latest",
       "essential": true,
       "memory": 512,
       "portMappings": [
@@ -15,7 +15,7 @@
     "environment": [
       {
         "name": "SPRING_DATASOURCE_URL",
-        "value": "jdbc:postgresql://awseb-e-fmerqurhmg-stack-awsebrdsdatabase-erb7gj2z3z0n.cylhovtdkwkl.eu-north-1.rds.amazonaws.com:5432/customer"
+        "value": "jdbc:postgresql://awseb-e-s2eg6vh9vc-stack-awsebrdsdatabase-zktdwxonv26i.ctauyg40w77f.us-east-1.rds.amazonaws.com:5432/customers"
       }
     ]
     }

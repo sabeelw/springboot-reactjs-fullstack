@@ -11,6 +11,7 @@ import java.util.Optional;
 
 
 @RestController
+@CrossOrigin( origins = "http://localhost:8080")
 public class CustomerController {
 
     public record user(String name, String email, Integer age){};
