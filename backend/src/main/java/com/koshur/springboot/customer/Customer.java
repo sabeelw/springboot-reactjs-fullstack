@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 /*
 ORM
-dfd
+dfds
  */
 @Entity
 @Table(
