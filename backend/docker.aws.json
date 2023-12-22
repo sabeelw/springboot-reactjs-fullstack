@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "wanicodes",
-      "image": "sabeelwani/spring-boot:latest",
+      "image": "sabeelwani/spring-boot:22.12.2023.17.00.33",
       "essential": true,
       "memory": 512,
       "portMappings": [
