@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 /*
-ORM
+ORMd
 dfdsa
  */
 @Entity
