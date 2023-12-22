@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { CardUser as UserCard } from "../../components/card-component/card-component";
+import { CardUser, SampleCard } from "../../components/card-component/card-component";
 import { useEffect, useState } from "react"
 import { SampleContainer } from "../../components/container-component/container-component";
 export const UserView = () => {
@@ -15,7 +15,7 @@ export const UserView = () => {
     )
     return (
         <SampleContainer>
-            <UserCard name={user.name} email={user.email}></UserCard>
+            <CardUser user={user}></CardUser>
         </SampleContainer>
     )
 }
